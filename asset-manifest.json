@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/static/css/main.2d683bc0.css",
-    "main.js": "/static/js/main.63782cc8.js",
+    "main.js": "/static/js/main.f0aedd91.js",
     "static/js/415.4d6acbeb.chunk.js": "/static/js/415.4d6acbeb.chunk.js",
     "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
     "static/media/poster.png": "/static/media/poster.1b9f45b97dc1304ea3d3.png",
     "static/media/manipulation.png": "/static/media/manipulation.cf2a70b3a44721ecdad3.png",
     "static/media/vector.png": "/static/media/vector.c3e9a3e320af8e626317.png",
     "static/media/Logo.png": "/static/media/Logo.961c9171da56c7e84d47.png",
+    "static/media/Eshita-modified.png": "/static/media/Eshita-modified.11b8d6ad57f3fe94c6f2.png",
     "static/media/Resume_Eshita_Dahal.pdf": "/static/media/Resume_Eshita_Dahal.0aa49521cb04b7e010ea.pdf",
     "static/media/about.png": "/static/media/about.aee0f771fbfc1e7b8fa8.png",
     "static/media/home-bg.jpg": "/static/media/home-bg.dc52d5d40a40b13154b0.jpg",
-    "static/media/avatar.svg": "/static/media/avatar.5852f40fbb38aa284829fa3fb7722225.svg",
     "static/media/ADM.svg": "/static/media/ADM.33c992c768c78cfbc78dc5cc562cea4f.svg",
     "static/media/pre.svg": "/static/media/pre.d4812f51c8c80976eaab.svg",
     "index.html": "/index.html",
     "main.2d683bc0.css.map": "/static/css/main.2d683bc0.css.map",
-    "main.63782cc8.js.map": "/static/js/main.63782cc8.js.map",
+    "main.f0aedd91.js.map": "/static/js/main.f0aedd91.js.map",
     "415.4d6acbeb.chunk.js.map": "/static/js/415.4d6acbeb.chunk.js.map",
     "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2d683bc0.css",
-    "static/js/main.63782cc8.js"
+    "static/js/main.f0aedd91.js"
   ]
 }
