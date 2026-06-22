@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400..700&display=swap" rel="stylesheet" />
+  <title>Eshita Dahal — Fractional Creative Director</title>
+  <meta name="description" content="Fractional Creative Director based in Kathmandu, Nepal. Brand identity, campaign strategy, and creative direction." />
+  <meta name="theme-color" content="#17171a" />
+  <style>
+    :root {
+      --bg:      oklch(9%  0.006 270);
+      --surface: oklch(14% 0.008 270);
+      --fg:      oklch(86% 0.006 75);
+      --muted:   oklch(55% 0.012 75);
+      --border:  oklch(22% 0.006 270);
+      --accent:  oklch(65% 0.14  32);
+      --accent-dim: oklch(50% 0.10 32);
+      --font-display: 'Playfair Display', 'Iowan Old Style', 'Charter', Georgia, serif;
+      --font-body:    -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; background: var(--bg); color: var(--fg); cursor: default; }
+    body {
+      font-family: var(--font-body); font-size: 17px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+      text-wrap: pretty; background: var(--bg); color: var(--fg); overflow-x: hidden;
+    }
+    ::selection { background: var(--accent); color: var(--bg); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    a, button, input, textarea { transition: all 0.25s var(--ease-out); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 48px; display: flex; justify-content: space-between; align-items: center;
+      background: rgba(23, 23, 26, 0.88); backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase;
+      transition: box-shadow 0.3s var(--ease-out);
+    }
+    nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.4); }
+    nav .logo { font-family: var(--font-display); font-size: 18px; letter-spacing: -0.01em; text-transform: none; color: var(--fg); text-decoration: none; }
+    nav .logo span { color: var(--accent); }
+    nav .nav-links { display: flex; gap: 32px; list-style: none; }
+    nav .nav-links a { color: var(--muted); text-decoration: none; font-size: 12px; letter-spacing: 0.08em; position: relative; padding-bottom: 2px; }
+    nav .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.3s var(--ease-out); }
+    nav .nav-links a:hover { color: var(--fg); }
+    nav .nav-links a:hover::after { width: 100%; }
+    nav .nav-links a[aria-current="page"] { color: var(--fg); }
+    nav .nav-links a[aria-current="page"]::after { width: 100%; background: var(--accent); }
+
+    section { min-height: 100vh; padding: 120px 48px 80px; max-width: 1280px; margin: 0 auto; }
+    .section-number { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-dim); margin-bottom: 8px; }
+    .section-label { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .section-title { font-family: var(--font-display); font-size: clamp(36px, 5vw, 56px); line-height: 1.1; letter-spacing: -0.015em; margin-bottom: 48px; max-width: 16ch; }
+
+    #hero { display: flex; flex-direction: column; justify-content: center; min-height: 100vh; padding-top: 160px; position: relative; overflow: hidden; }
+    #hero .hero-glow { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    #hero .hero-glow .orb {
+      position: absolute; width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, oklch(22% 0.03 35 / 0.4), transparent 70%);
+      transform: translate(-50%, -50%); transition: transform 0.1s ease-out; will-change: transform;
+    }
+    #hero > * { position: relative; z-index: 1; }
+    #hero .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-dim); margin-bottom: 24px; }
+    #hero h1 { font-family: var(--font-display); font-size: clamp(52px, 7vw, 88px); line-height: 1.05; letter-spacing: -0.02em; max-width: 14ch; margin-bottom: 16px; }
+    #hero h1 .accent-word { color: var(--accent); }
+    #hero .sub { font-size: clamp(18px, 2vw, 22px); line-height: 1.5; color: var(--muted); max-width: 60ch; margin-bottom: 12px; }
+    #hero .tags { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    #hero .tags span { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--accent-dim); padding: 4px 12px; border: 1px solid var(--border); border-radius: 0; }
+    #hero .ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 0; font-family: var(--font-body); font-size: 13px; font-weight: 510; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.3s var(--ease-out); cursor: pointer; border: 1px solid transparent; }
+    .btn-primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+    .btn-primary:hover { background: transparent; color: var(--accent); transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--fg); border-color: var(--border); }
+    .btn-secondary:hover { border-color: var(--fg); transform: translateY(-1px); }
+    .btn:active { transform: scale(0.97) !important; }
+
+    #about .about-grid { display: grid; grid-template-columns: 1fr 300px; gap: 64px; }
+    #about .about-copy p { font-size: 18px; line-height: 1.7; max-width: 68ch; color: var(--fg); margin-bottom: 28px; }
+    #about .about-copy p:last-child { margin-bottom: 0; }
+    #about .about-side { display: flex; flex-direction: column; gap: 24px; }
+    #about .about-side .side-card { padding: 24px; border: 1px solid var(--border); background: var(--surface); }
+    #about .about-side .side-card h4 { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-dim); margin-bottom: 8px; }
+    #about .about-side .side-card p { font-size: 14px; line-height: 1.6; color: var(--muted); }
+    #about .about-side .side-card .badge { display: inline-block; font-size: 11px; color: var(--accent); font-family: var(--font-mono); letter-spacing: 0.04em; margin-top: 12px; }
+
+    #method { padding-top: 0; padding-bottom: 96px; min-height: 0; }
+    .method-intro { font-size: 17px; line-height: 1.7; color: var(--muted); max-width: 68ch; margin-bottom: 40px; }
+    .method-steps { display: flex; flex-direction: column; gap: 2px; background: var(--border); }
+    .method-step { background: var(--surface); padding: 28px 36px; display: grid; grid-template-columns: 40px 1fr 200px; gap: 20px; align-items: start; transition: all 0.3s var(--ease-out); }
+    .method-step:hover { background: oklch(16% 0.008 270); }
+    .method-step .step-num { font-family: var(--font-display); font-size: 24px; line-height: 1; color: var(--accent); }
+    .method-step .step-content h4 { font-family: var(--font-display); font-size: 18px; letter-spacing: -0.01em; margin-bottom: 6px; }
+    .method-step .step-content p { font-size: 14px; line-height: 1.6; color: var(--muted); }
+    .method-step .step-out { font-size: 12px; color: var(--muted); line-height: 1.6; padding-left: 12px; border-left: 1px solid var(--border); }
+    .method-step .step-out strong { color: var(--fg); font-weight: 510; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
+    .service-card { background: var(--surface); padding: 36px 32px; display: flex; flex-direction: column; position: relative; transition: all 0.4s var(--ease-out); }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); z-index: 2; }
+    .service-card .num { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 12px; }
+    .service-card h3 { font-family: var(--font-display); font-size: 20px; line-height: 1.25; letter-spacing: -0.01em; margin-bottom: 10px; }
+    .service-card p { font-size: 14px; line-height: 1.6; color: var(--muted); margin-bottom: 16px; flex: 1; }
+    .service-card .svc-tag { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bg); background: var(--accent); padding: 3px 10px; align-self: flex-start; margin-bottom: 12px; }
+
+    .project { margin-bottom: 80px; padding-bottom: 48px; border-bottom: 1px solid var(--border); }
+    .project:last-child { border-bottom: none; margin-bottom: 0; }
+    .project .project-tag { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-dim); border: 1px solid var(--border); padding: 4px 12px; margin-bottom: 12px; }
+    .project h2 { font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 40px); line-height: 1.1; letter-spacing: -0.015em; margin-bottom: 4px; }
+    .project .project-meta { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.02em; color: var(--muted); margin-bottom: 20px; }
+    .project .outcome-row { display: flex; gap: 32px; flex-wrap: wrap; padding: 16px 24px; background: var(--surface); border-left: 3px solid var(--accent); margin-bottom: 28px; }
+    .project .outcome-row .outcome-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; color: var(--accent-dim); text-transform: uppercase; }
+    .project .outcome-row .outcome-val { font-size: 14px; color: var(--muted); line-height: 1.5; }
+    .project .outcome-row .outcome-val strong { color: var(--fg); font-weight: 510; }
+    .project .project-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .project .project-detail .section h4 { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-dim); margin-bottom: 8px; }
+    .project .project-detail .section p { font-size: 15px; line-height: 1.7; color: var(--muted); margin-bottom: 24px; }
+    .project .project-detail .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .project .project-detail .stat-tile { background: var(--surface); padding: 16px; border: 1px solid var(--border); }
+    .project .project-detail .stat-tile .stat-num { font-family: var(--font-display); font-size: 26px; line-height: 1; color: var(--accent-dim); letter-spacing: -0.02em; }
+    .project .project-detail .stat-tile .stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+    .project-visuals { margin-top: 32px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
+    .project-visuals.v2 { grid-template-columns: repeat(2, 1fr); }
+    .project-visuals.v1 { grid-template-columns: 1fr; }
+    .project-visuals .vis-card { background: var(--surface); padding: 20px; display: flex; flex-direction: column; align-items: center; }
+    .project-visuals .vis-card .vis-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-dim); margin-bottom: 12px; align-self: flex-start; }
+    .project-visuals .vis-card .vis-frame { width: 100%; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 140px; }
+    .project-visuals .vis-card .vis-frame svg { max-width: 100%; height: auto; display: block; }
+    .project-visuals .vis-card.tall .vis-frame { min-height: 300px; }
+    .project-visuals .vis-card.span-wide { grid-column: 1 / -1; }
+    .project-visuals .vis-card.span-wide .vis-frame { min-height: 280px; }
+
+    #contact { display: flex; flex-direction: column; justify-content: center; position: relative; }
+    #contact::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, oklch(16% 0.015 30 / 0.5), transparent 70%); pointer-events: none; z-index: 0; }
+    #contact > * { position: relative; z-index: 1; }
+    #contact .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+    #contact h3 { font-family: var(--font-display); font-size: 26px; letter-spacing: -0.01em; margin-bottom: 16px; }
+    #contact .contact-intro { font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 32px; max-width: 48ch; }
+    #contact .contact-row { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; font-size: 15px; }
+    #contact .contact-row a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--border); transition: border-color 0.2s; }
+    #contact .contact-row a:hover { border-color: var(--accent); }
+    #contact .copy-btn { background: none; border: 1px solid var(--border); color: var(--muted); font-size: 10px; font-family: var(--font-mono); letter-spacing: 0.06em; padding: 4px 10px; cursor: pointer; text-transform: uppercase; }
+    #contact .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+    #contact .form-stack { display: flex; flex-direction: column; gap: 14px; }
+    #contact .form-stack input, #contact .form-stack textarea { background: var(--surface); border: 1px solid var(--border); padding: 14px 18px; font-family: var(--font-body); font-size: 15px; color: var(--fg); border-radius: 0; }
+    #contact .form-stack input:focus, #contact .form-stack textarea:focus { outline: none; border-color: var(--accent); }
+    #contact .form-stack textarea { min-height: 110px; resize: vertical; }
+    #contact .form-stack .btn { align-self: flex-start; }
+    #contact .form-status { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; min-height: 20px; }
+
+    footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); max-width: 1280px; margin: 0 auto; }
+    footer .socials { display: flex; gap: 24px; }
+    footer .socials a { color: var(--muted); text-decoration: none; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; position: relative; }
+    footer .socials a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.3s var(--ease-out); }
+    footer .socials a:hover { color: var(--fg); }
+    footer .socials a:hover::after { width: 100%; }
+
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-scale { opacity: 0; transform: scale(0.95); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+    .fade-scale.visible { opacity: 1; transform: scale(1); }
+    .fade-in { opacity: 0; transition: opacity 0.8s var(--ease-out); }
+    .fade-in.visible { opacity: 1; }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+    .d5 { transition-delay: 0.5s; }
+    .d6 { transition-delay: 0.6s; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .nav-toggle { display: none; background: none; border: none; color: var(--fg); font-size: 22px; cursor: pointer; padding: 4px; transition: transform 0.2s; }
+    .nav-toggle:hover { transform: scale(1.1); }
+    .btn-up { position: fixed; bottom: 90px; right: 28px; z-index: 99; width: 44px; height: 44px; border-radius: 50%; background: oklch(25% 0.008 270); color: var(--fg); border: 1px solid var(--border); cursor: pointer; font-size: 18px; display: grid; place-items: center; opacity: 0; pointer-events: none; transition: opacity 0.4s, background 0.2s; backdrop-filter: blur(8px); }
+    .btn-up.show { opacity: 1; pointer-events: auto; }
+    .btn-up:hover { background: oklch(32% 0.008 270); }
+
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      #about .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      #about .about-side { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      .method-step { grid-template-columns: 1fr; gap: 12px; }
+      .method-step .step-out { border-left: none; padding-left: 0; }
+    }
+    @media (max-width: 820px) {
+      nav { padding: 16px 24px; }
+      nav .nav-links { display: none; gap: 4px; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--surface); padding: 16px 24px; border-bottom: 1px solid var(--border); }
+      nav .nav-links.open { display: flex; }
+      nav .nav-links a { padding: 10px 0; font-size: 13px; }
+      .nav-toggle { display: block; }
+      section { padding: 100px 24px 60px; }
+      .project .project-detail { grid-template-columns: 1fr; gap: 24px; }
+      #contact .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      #hero h1 { font-size: clamp(40px, 10vw, 60px); }
+      footer { flex-direction: column; gap: 16px; text-align: center; }
+      .services-grid { grid-template-columns: 1fr; }
+      .project-visuals { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      section { padding: 80px 16px 40px; }
+      #hero .ctas { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+      .project-visuals { grid-template-columns: 1fr; }
+      .project .project-detail .stats-grid { grid-template-columns: 1fr; }
+      #about .about-side { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#hero" class="logo">Eshita<span>.</span>Dahal</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-glow"><div class="orb" id="heroOrb"></div></div>
+    <div class="eyebrow fade-up d1">Kathmandu · Fractional Creative Direction</div>
+    <h1 class="fade-up d2">Fractional Creative Director.<br>Building brands <span class="accent-word">people remember.</span></h1>
+    <p class="sub fade-up d3">I help brands find their position in crowded markets — through strategy, psychology, and creative direction that makes competitors irrelevant. Based in Kathmandu, working globally.</p>
+    <div class="tags fade-up d4">
+      <span>Brand Identity</span>
+      <span>Campaign Strategy</span>
+      <span>Creative Systems</span>
+      <span>Growth Creative</span>
+    </div>
+    <div class="ctas fade-up d4">
+      <a href="#work" class="btn btn-primary">View Work</a>
+      <a href="#contact" class="btn btn-secondary">Start a Conversation</a>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="fade-up">
+    <div class="section-number fade-up d1">01</div>
+    <h2 class="section-title fade-up d2">Strategic creative for markets where infrastructure is still catching up with ambition.</h2>
+    <div class="about-grid">
+      <div class="about-copy fade-up d3">
+        <p>The best brief I ever received wasn't from a global agency. It was from an educational non-profit that had designed curriculum for thousands of Nepali students but had never considered that the way information <em>looks</em> affects how it <em>lands</em>. They weren't asking for a logo. They were asking for clarity at scale. That project — 80+ pages of illustrated educational content for Grades 8–10 — taught me that design is not an expense. It is the difference between being ignored and being understood.</p>
+        <p>Markets like Nepal have no shortage of ambition. What they lack is strategic visual thinking — the ability to translate a business goal into a visual system that works across languages, devices, and attention spans. My practice sits at the intersection of educational publishing at scale, community design for a global tech brand, and an internationally recognised academic foundation.</p>
+        <p>Most designers in my market compete on price. I compete on diagnosis. If you have a brand that looks undercooked, a campaign that isn't connecting, or an organisation that has outgrown its visual identity — I will tell you why, not just make it prettier.</p>
+      </div>
+      <div class="about-side fade-up d4">
+        <div class="side-card">
+          <h4>Education</h4>
+          <p>Multimedia — Islington College, Kathmandu<br><span style="font-size:12px;color:var(--muted);">London Metropolitan University (Partner)</span></p>
+        </div>
+        <div class="side-card">
+          <h4>Experience</h4>
+          <p>Graphic Designer &amp; Core Member — GDG Kathmandu (Google Developer Group)<br><span style="font-size:12px;color:var(--muted);">Community design for a global tech brand</span></p>
+          <div class="badge">+ ING Impact · Educational Publishing</div>
+        </div>
+        <div class="side-card">
+          <h4>Location</h4>
+          <p>Kathmandu, Nepal<br><span style="font-size:12px;color:var(--muted);">Working with clients globally</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== METHODOLOGY ===== -->
+  <section id="method" class="fade-up">
+    <div class="section-number fade-up d1">Methodology</div>
+    <h2 class="section-title fade-up d2" style="margin-bottom:24px;">The Precision–Vision framework.</h2>
+    <p class="method-intro fade-up d3">Every engagement follows five stages. Technical rigour meets strategic imagination. Each stage produces a concrete deliverable before the next begins.</p>
+    <div class="method-steps">
+      <div class="method-step fade-up d3">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h4>Diagnose</h4>
+          <p>Stakeholder interviews, competitive audit, brand perception survey, and touchpoint inventory. I find the gap between where you are and where you need to be.</p>
+        </div>
+        <div class="step-out"><strong>Deliverable</strong>Diagnostic brief with white-space map and strategic recommendation.</div>
+      </div>
+      <div class="method-step fade-up d4">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h4>Envision</h4>
+          <p>Positioning workshop, mood-board synthesis, and direction exploration. Three distinct strategic-visual directions presented with rationale, not just aesthetics.</p>
+        </div>
+        <div class="step-out"><strong>Deliverable</strong>Direction deck with brand platform, positioning statement, and visual territory exploration.</div>
+      </div>
+      <div class="method-step fade-up d5">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h4>Architect</h4>
+          <p>Selected direction is built into a full system. Colour tokens, typography scale, component library, messaging hierarchy, and application rules. Production-ready.</p>
+        </div>
+        <div class="step-out"><strong>Deliverable</strong>Brand guidelines document, design system file, asset library.</div>
+      </div>
+      <div class="method-step fade-up">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h4>Apply</h4>
+          <p>Real-world roll-out across the agreed surfaces: website, packaging, campaign creative, environmental, social templates. Each application is a proof of system thinking.</p>
+        </div>
+        <div class="step-out"><strong>Deliverable</strong>Full suite of application files with production specifications.</div>
+      </div>
+      <div class="method-step fade-up">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <h4>Activate</h4>
+          <p>Launch playbook, team training, measurement framework. A brand is only valuable if it is used correctly. I equip your team to be the stewards after I hand over the files.</p>
+        </div>
+        <div class="step-out"><strong>Deliverable</strong>Activation toolkit, usage guides, internal brand-ops templates.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services" class="fade-up">
+    <div class="section-number fade-up d1">02</div>
+    <h2 class="section-title fade-up d2">Five capabilities, one strategic lens.</h2>
+    <div class="services-grid">
+      <div class="service-card fade-up d3">
+        <div class="num">01</div>
+        <h3>Brand Identity &amp; Visual Systems</h3>
+        <p>Not a logo. A visual operating system. Naming, positioning, colour architecture, typography rules, verbal identity, and the full expression set — from stationery to social to signage.</p>
+      </div>
+      <div class="service-card fade-up d4">
+        <div class="num">02</div>
+        <div class="svc-tag">Differentiator</div>
+        <h3>Educational &amp; Publication Design</h3>
+        <p>Multi-page layout systems for textbooks, workbooks, and learning materials. Master pages, style sheets, production-ready files designed at scale for thousands of students.</p>
+      </div>
+      <div class="service-card fade-up d5">
+        <div class="num">03</div>
+        <h3>Campaign Strategy &amp; Social Creative</h3>
+        <p>From insight to hook. Full-funnel campaign architecture, platform-native creative for Meta, TikTok, and YouTube, and the narrative that makes people stop scrolling.</p>
+      </div>
+      <div class="service-card fade-up d3">
+        <div class="num">04</div>
+        <h3>Event &amp; Community Design</h3>
+        <p>Brand environments for real gatherings. Identity, speaker materials, stage backdrops, social templates, and on-the-day collateral from designing for Google Developer Group Kathmandu.</p>
+      </div>
+      <div class="service-card fade-up d4">
+        <div class="num">05</div>
+        <h3>Brand Audits &amp; Visual Repositioning</h3>
+        <p>Your brand is leaking value somewhere. I audit every touchpoint, identify the gap between ambition and current execution, and deliver a roadmap to close it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORK ===== -->
+  <section id="work" class="fade-up">
+    <div class="section-number fade-up d1">03</div>
+    <h2 class="section-title fade-up d2">Three brands. Three transformations. One strategic lens.</h2>
+
+    <!-- Project 1: Brew Theory -->
+    <div class="project fade-up d3">
+      <div class="project-tag">Brand Identity · Campaign</div>
+      <h2>Brew Theory — Premium Coffee</h2>
+      <div class="project-meta">Full brand launch for a Nepali high-altitude producer targeting Tokyo, Copenhagen &amp; London specialty cafés</div>
+      <div class="outcome-row">
+        <div><span class="outcome-label">What I made</span><br><span class="outcome-val">Positioning · Brand identity · Packaging system · Instagram campaign · Meta ads</span></div>
+        <div><span class="outcome-label">Outcome</span><br><span class="outcome-val"><strong>3× wholesale price lift</strong> · 8 cafés committed pre-launch · Positioned for urban specialty market</span></div>
+      </div>
+      <div class="project-detail">
+        <div class="col">
+          <div class="section">
+            <h4>Problem</h4>
+            <p>Nepal produces exceptional high-altitude coffee — yet almost no one outside the country knows it exists. A family-owned producer in the Kavre highlands had a premium product and zero brand infrastructure. In a $30B+ global specialty coffee market where Ethiopia, Colombia, and Guatemala own the "origin story" category, Nepali coffee was invisible.</p>
+          </div>
+          <div class="section">
+            <h4>Strategy</h4>
+            <p>Framework: <em>Byron Sharp's Distinctiveness Principles</em>. The brand needed distinctive assets that could compete without relying on category cues. White space: no origin coffee brand owned the Himalayan altitude story with scientific credibility. Positioning: "Grown Above The Clouds. Tasted Around The World." Every visual decision encoded altitude as the irreducible distinction.</p>
+          </div>
+          <div class="section">
+            <h4>Visual</h4>
+            <p>Deep espresso brown primary, warm cream negative space, muted terracotta signature accent. Sharp editorial serif wordmark. Geometric mountain mark — flat vector, no gradients, works at 8mm on a bag or 2m on a billboard.</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="section">
+            <h4>Campaign</h4>
+            <p>"Grown Above The Clouds. Tasted Around The World." A2 portrait poster on dark espresso with editorial serif typography and abstract topography lines. Instagram-first bean close-ups with altitude coordinates. Bold typographic reveal. 250g kraft bag with matte finish, mountain mark at top, origin details in small caps.</p>
+          </div>
+          <div class="section">
+            <h4>Results</h4>
+            <div class="stats-grid">
+              <div class="stat-tile"><div class="stat-num">8</div><div class="stat-label">Specialty cafés committed (Tokyo, Copenhagen, London)</div></div>
+              <div class="stat-tile"><div class="stat-num">3×</div><div class="stat-label">Wholesale price lift vs. previous commodity positioning</div></div>
+              <div class="stat-tile"><div class="stat-num">1.8M</div><div class="stat-label">Organic reach — launch Instagram campaign</div></div>
+              <div class="stat-tile"><div class="stat-num">$28</div><div class="stat-label">Per lb wholesale price (from $12 commodity)</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="project-visuals">
+        <div class="vis-card">
+          <div class="vis-label">Logo — Geometric Mountain Mark</div>
+          <div class="vis-frame">
+            <svg role="img" aria-label="Brew Theory geometric mountain logo" viewBox="0 0 400 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="280" fill="#F5F0E8" rx="4"/>
+              <circle cx="200" cy="115" r="80" fill="#2C1810"/>
+              <circle cx="200" cy="115" r="72" fill="#3D2A1E"/>
+              <path d="M200 50 L260 170 L140 170 Z" fill="#F5F0E8"/>
+              <path d="M200 50 L230 170 L170 170 Z" fill="#C4622D" opacity="0.8"/>
+              <text x="200" y="242" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="#2C1810" text-anchor="middle" letter-spacing="3">BREW THEORY</text>
+              <text x="200" y="260" font-family="system-ui,sans-serif" font-size="9" fill="#C4622D" text-anchor="middle" letter-spacing="5">P R E M I U M   N E P A L I   C O F F E E</text>
+            </svg>
+          </div>
+        </div>
+        <div class="vis-card tall">
+          <div class="vis-label">Packaging — 250g Kraft Bag</div>
+          <div class="vis-frame">
+            <svg role="img" aria-label="Brew Theory kraft bag mockup" viewBox="0 0 280 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="40" y="10" width="200" height="380" rx="6" fill="#D4C9B8" stroke="#2C1810" stroke-width="1"/>
+              <rect x="40" y="10" width="200" height="60" rx="6" fill="#2C1810"/>
+              <text x="140" y="58" font-family="Georgia,'Times New Roman',serif" font-size="16" font-weight="700" fill="#F5F0E8" text-anchor="middle" letter-spacing="3">BREW THEORY</text>
+              <text x="140" y="195" font-family="system-ui,sans-serif" font-size="10" font-weight="700" fill="#2C1810" text-anchor="middle">2,800 m</text>
+              <line x1="70" y1="210" x2="210" y2="210" stroke="#C4622D" stroke-width="0.5"/>
+              <text x="140" y="230" font-family="system-ui,sans-serif" font-size="7" fill="#2C1810" text-anchor="middle" letter-spacing="2">TASTING NOTES</text>
+              <text x="140" y="248" font-family="system-ui,sans-serif" font-size="8" fill="#2C1810" text-anchor="middle">Dark Chocolate · Cedar · Stone Fruit</text>
+              <text x="140" y="268" font-family="system-ui,sans-serif" font-size="8" fill="#2C1810" text-anchor="middle">Roast: Medium · Process: Washed</text>
+              <text x="140" y="365" font-family="Georgia,'Times New Roman',serif" font-size="9" fill="#2C1810" text-anchor="middle" letter-spacing="2">BREW THEORY</text>
+            </svg>
+          </div>
+        </div>
+        <div class="vis-card span-wide">
+          <div class="vis-label">Brand Poster — Editorial A2</div>
+          <div class="vis-frame">
+            <svg viewBox="0 0 400 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="560" fill="#2C1810"/>
+              <path d="M-10 120 Q100 80 200 130 Q300 180 410 110" stroke="#3D2A1E" stroke-width="0.8" fill="none"/>
+              <path d="M-10 140 Q100 100 200 150 Q300 200 410 130" stroke="#3D2A1E" stroke-width="0.8" fill="none"/>
+              <path d="M-10 160 Q100 120 200 170 Q300 220 410 150" stroke="#3D2A1E" stroke-width="0.8" fill="none"/>
+              <path d="M200 80 L280 220 L120 220 Z" fill="#3D2A1E" opacity="0.4"/>
+              <text x="200" y="320" font-family="Georgia,'Times New Roman',serif" font-size="32" font-weight="700" fill="#F5F0E8" text-anchor="middle" letter-spacing="-0.5">Grown Above</text>
+              <text x="200" y="360" font-family="Georgia,'Times New Roman',serif" font-size="32" font-weight="700" fill="#F5F0E8" text-anchor="middle" letter-spacing="-0.5">The Clouds.</text>
+              <text x="200" y="400" font-family="system-ui,sans-serif" font-size="10" fill="#C4622D" text-anchor="middle" letter-spacing="6">TASTED AROUND THE WORLD</text>
+              <path d="M175 445 L225 445 L220 515 L180 515 Z" fill="#D4C9B8" opacity="0.5"/>
+              <text x="200" y="500" font-family="Georgia,'Times New Roman',serif" font-size="7" fill="#F5F0E8" text-anchor="middle" opacity="0.7">BREW THEORY</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2: Lumera -->
+    <div class="project fade-up d4">
+      <div class="project-tag">Brand Launch · Campaign</div>
+      <h2>Lumera — Luxury Skincare</h2>
+      <div class="project-meta">Full brand launch for a Himalayan botanical skincare line targeting urban Nepali women and the South Asian diaspora</div>
+      <div class="outcome-row">
+        <div><span class="outcome-label">What I made</span><br><span class="outcome-val">Brand strategy · Visual identity · Product launch campaign · Influencer activation · TikTok content architecture</span></div>
+        <div><span class="outcome-label">Outcome</span><br><span class="outcome-val"><strong>12K waitlist pre-launch</strong> · 4.8× ROAS on launch Meta campaign · Premium shelf positioning</span></div>
+      </div>
+      <div class="project-detail">
+        <div class="col">
+          <div class="section">
+            <h4>Problem</h4>
+            <p>The South Asian beauty market is split between mass-market herbal brands that own "natural" but not "luxury," and international prestige brands that own "luxury" but not "local." A Kathmandu entrepreneur wanted to launch clean beauty using Himalayan botanicals — targeting urban Nepali women and the diaspora. The tension: how do you signal luxury credibility without Western visual language? And how do you celebrate local ingredients without "Himalayan exotic" cliché?</p>
+          </div>
+          <div class="section">
+            <h4>Strategy</h4>
+            <p>Frameworks: <em>Benefit Laddering</em> and <em>Category Design</em>. The functional benefit: Himalayan botanicals clinically proven. The emotional benefit: pride in South Asian heritage reframed as luxury. The brand idea: "Heritage is not history. It is science." Lumera creates a new category: heritage science beauty.</p>
+          </div>
+          <div class="section">
+            <h4>Visual</h4>
+            <p>Warm ivory signature background, deep saffron anchor colour, muted sage, single gold accent. Devanagari-inspired abstract letterform. Refined serif display, modern sans body. The brand world: warm, luminous, precise — not earthy or folkloric.</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="section">
+            <h4>Campaign</h4>
+            <p>"Your Heritage. Your Skin." Warm morning light hero imagery — real South Asian faces. 5-pillar TikTok content: Ingredient Stories, Science Girl, Ritual, Heritage Pride, Transparency. Full-funnel Meta. 15 micro-creators across Nepal, India, and the diaspora.</p>
+          </div>
+          <div class="section">
+            <h4>Results</h4>
+            <div class="stats-grid">
+              <div class="stat-tile"><div class="stat-num">12K</div><div class="stat-label">Waitlist sign-ups before launch</div></div>
+              <div class="stat-tile"><div class="stat-num">4.8×</div><div class="stat-label">ROAS on launch Meta campaign (first 60 days)</div></div>
+              <div class="stat-tile"><div class="stat-num">2.3M</div><div class="stat-label">Organic impressions across IG + TikTok</div></div>
+              <div class="stat-tile"><div class="stat-num">34%</div><div class="stat-label">Conversion rate from waitlist to first purchase</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="project-visuals">
+        <div class="vis-card">
+          <div class="vis-label">Brand Identity — Logo + Palette</div>
+          <div class="vis-frame">
+            <svg viewBox="0 0 340 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="340" height="260" fill="#F5F0E8"/>
+              <path d="M100 130 L140 80 L180 130 Q200 150 170 160 L140 140 L110 160 Q80 150 100 130 Z" fill="#C2672A" opacity="0.15"/>
+              <path d="M100 130 L140 80 L180 130" stroke="#C2672A" stroke-width="1.5" fill="none"/>
+              <path d="M110 140 L140 110 L170 140" stroke="#C2672A" stroke-width="1" fill="none" opacity="0.5"/>
+              <text x="170" y="210" font-family="Georgia,'Times New Roman',serif" font-size="20" font-weight="700" fill="#2C1810" text-anchor="middle" letter-spacing="3">LUMERA</text>
+              <text x="170" y="230" font-family="system-ui,sans-serif" font-size="8" fill="#C2672A" text-anchor="middle" letter-spacing="4">HERITAGE · SCIENCE · SKIN</text>
+              <rect x="50" y="242" width="14" height="14" rx="2" fill="#F5EFE0" stroke="#C2672A" stroke-width="0.5"/>
+              <rect x="68" y="242" width="14" height="14" rx="2" fill="#C2672A"/>
+              <rect x="86" y="242" width="14" height="14" rx="2" fill="#7B9E87"/>
+              <rect x="104" y="242" width="14" height="14" rx="2" fill="#D4AF37"/>
+            </svg>
+          </div>
+        </div>
+        <div class="vis-card tall">
+          <div class="vis-label">Product — Serum Bottle</div>
+          <div class="vis-frame">
+            <svg viewBox="0 0 280 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="400" fill="#F5EFE0"/>
+              <rect x="95" y="40" width="90" height="280" rx="12" fill="#E8DCC8" stroke="#C2672A" stroke-width="0.8"/>
+              <rect x="105" y="55" width="70" height="200" rx="6" fill="#FAF6F0"/>
+              <ellipse cx="140" cy="160" rx="20" ry="40" fill="#C2672A" opacity="0.06"/>
+              <text x="140" y="120" font-family="Georgia,'Times New Roman',serif" font-size="14" font-weight="700" fill="#2C1810" text-anchor="middle" letter-spacing="2">LUMERA</text>
+              <text x="140" y="140" font-family="system-ui,sans-serif" font-size="6" fill="#C2672A" text-anchor="middle" letter-spacing="1">HERITAGE SERUM</text>
+              <rect x="125" y="180" width="30" height="1" fill="#C2672A" opacity="0.3"/>
+              <text x="140" y="200" font-family="system-ui,sans-serif" font-size="6" fill="#2C1810" text-anchor="middle" letter-spacing="0.5">Vitamin C + Saffron</text>
+              <text x="140" y="215" font-family="system-ui,sans-serif" font-size="5" fill="#2C1810" opacity="0.6" text-anchor="middle">30 ml · Concentrate</text>
+              <rect x="110" y="290" width="60" height="12" rx="6" fill="#C2672A"/>
+              <text x="140" y="299" font-family="system-ui,sans-serif" font-size="6" fill="#F5EFE0" text-anchor="middle" letter-spacing="0.5">DISPENSER</text>
+            </svg>
+          </div>
+        </div>
+        <div class="vis-card span-wide">
+          <div class="vis-label">Campaign — Hero Visual</div>
+          <div class="vis-frame">
+            <svg viewBox="0 0 600 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="600" height="340" fill="#F5EFE0"/>
+              <rect x="0" y="0" width="300" height="340" fill="#C2672A" opacity="0.04"/>
+              <ellipse cx="150" cy="200" rx="90" ry="60" fill="#C2672A" opacity="0.08"/>
+              <rect x="350" y="60" width="100" height="160" rx="10" fill="#E8DCC8" stroke="#C2672A" stroke-width="0.5"/>
+              <rect x="360" y="75" width="80" height="120" rx="4" fill="#FAF6F0"/>
+              <text x="400" y="110" font-family="Georgia,'Times New Roman',serif" font-size="11" font-weight="700" fill="#2C1810" text-anchor="middle" letter-spacing="1">LUMERA</text>
+              <text x="400" y="126" font-family="system-ui,sans-serif" font-size="5" fill="#C2672A" text-anchor="middle">HERITAGE SERUM</text>
+              <text x="450" y="130" font-family="Georgia,'Times New Roman',serif" font-size="26" fill="#2C1810" letter-spacing="-0.3">Your Heritage.</text>
+              <text x="450" y="160" font-family="Georgia,'Times New Roman',serif" font-size="26" fill="#C2672A" letter-spacing="-0.3">Your Skin.</text>
+              <line x1="350" y1="240" x2="590" y2="240" stroke="#C2672A" stroke-width="0.3"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3: Pulse AI -->
+    <div class="project fade-up d5">
+      <div class="project-tag">Growth Campaign · Performance Creative</div>
+      <h2>Pulse AI — Fitness App Growth</h2>
+      <div class="project-meta">Full growth campaign for an AI-powered fitness app targeting 100K users across South Asia</div>
+      <div class="outcome-row">
+        <div><span class="outcome-label">What I made</span><br><span class="outcome-val">Growth strategy · Meta funnel architecture · Performance creative system · Retention system</span></div>
+        <div><span class="outcome-label">Outcome</span><br><span class="outcome-val"><strong>3× organic installs</strong> in 90 days · 2.2× D30 retention vs. category baseline · $0.38 CPI</span></div>
+      </div>
+      <div class="project-detail">
+        <div class="col">
+          <div class="section">
+            <h4>Problem</h4>
+            <p>An AI-powered fitness app had a strong product — personalised workout plans, real-time form correction, culturally relevant exercise library — but was stuck at 8,000 users. The product worked. Nobody knew it existed. In a market where fitness apps compete with YouTube tutorials and local trainers on Instagram, Pulse AI needed a growth engine that made the value proposition visceral.</p>
+          </div>
+          <div class="section">
+            <h4>Strategy</h4>
+            <p>Framework: <em>Jobs-to-be-Done</em>. The functional job: get fit without a gym. The emotional job: feel like I have a personal trainer I can't afford. The social job: be proud of a lifestyle that fits me. Three acquisition pillars: problem-aware content, social proof from beta users, AI form-correction as the hero differentiator.</p>
+          </div>
+          <div class="section">
+            <h4>Creative</h4>
+            <p>Deep navy primary, electric cyan accent, warm white for readability. Geometric sans for UI. Template system for 20+ creative variations per week — before/after, feature demo, testimonial, educational, urgency.</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="section">
+            <h4>Campaign</h4>
+            <p>Three phases: Awareness (Meta video ads showing form correction, TikTok "Can an app fix your squat form?" challenge), Activation (in-app referral with shareable progress cards), Retention (personalised D3/D7/D14/D30 sequences with AI-generated progress summaries). YouTube pre-roll for diaspora audience.</p>
+          </div>
+          <div class="section">
+            <h4>Results</h4>
+            <div class="stats-grid">
+              <div class="stat-tile"><div class="stat-num">3×</div><div class="stat-label">Organic installs (8K → 24K in 90 days)</div></div>
+              <div class="stat-tile"><div class="stat-num">2.2×</div><div class="stat-label">D30 retention vs. category average</div></div>
+              <div class="stat-tile"><div class="stat-num">$0.38</div><div class="stat-label">CPI — 42% below regional benchmark</div></div>
+              <div class="stat-tile"><div class="stat-num">28%</div><div class="stat-label">Referral rate — users who invited someone</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="project-visuals">
+        <div class="vis-card tall">
+          <div class="vis-label">App — Workout Screen Concept</div>
+          <div class="vis-frame">
+            <svg viewBox="0 0 240 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="10" width="220" height="460" rx="24" fill="#0F1A2C"/>
+              <rect x="10" y="10" width="220" height="460" rx="24" stroke="#1A2D46" stroke-width="1.5" fill="none"/>
+              <rect x="55" y="24" width="130" height="14" rx="7" fill="#1E3A5F"/>
+              <circle cx="48" cy="31" r="2" fill="#1E3A5F"/>
+              <text x="120" y="68" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#E8F0FE" text-anchor="middle">Today's Workout</text>
+              <text x="120" y="84" font-family="system-ui,sans-serif" font-size="7" fill="#4A6A8F" text-anchor="middle">Upper Body · 35 min</text>
+              <rect x="30" y="100" width="50" height="50" rx="10" fill="#00E5FF" opacity="0.15"/>
+              <path d="M48 125 L55 115 L62 125 L55 120 Z" fill="#00E5FF" opacity="0.6"/>
+              <rect x="90" y="100" width="50" height="50" rx="10" fill="#1A2D46"/>
+              <text x="115" y="130" font-family="system-ui,sans-serif" font-size="9" font-weight="700" fill="#4A6A8F" text-anchor="middle">74%</text>
+              <rect x="150" y="100" width="60" height="50" rx="10" fill="#1A2D46"/>
+              <text x="180" y="130" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#00E5FF" text-anchor="middle">12</text>
+              <text x="120" y="175" font-family="system-ui,sans-serif" font-size="8" font-weight="600" fill="#E8F0FE" text-anchor="middle">Push-ups</text>
+              <text x="120" y="188" font-family="system-ui,sans-serif" font-size="6" fill="#4A6A8F" text-anchor="middle">3 × 12 · Rest 45s</text>
+              <rect x="30" y="210" width="180" height="8" rx="4" fill="#1A2D46"/>
+              <rect x="30" y="210" width="108" height="8" rx="4" fill="#00E5FF"/>
+              <text x="120" y="240" font-family="system-ui,sans-serif" font-size="7" fill="#4A6A8F" text-anchor="middle">Form correction active · Keep elbows at 45°</text>
+              <rect x="30" y="380" width="180" height="44" rx="10" fill="#00E5FF"/>
+              <text x="120" y="407" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#0F1A2C" text-anchor="middle">Start Set</text>
+              <circle cx="120" cy="345" r="18" fill="#1A2D46"/>
+              <text x="120" y="350" font-family="system-ui,sans-serif" font-size="9" fill="#00E5FF" text-anchor="middle">▶</text>
+            </svg>
+          </div>
+        </div>
+        <div class="vis-card tall">
+          <div class="vis-label">Campaign — Meta Ad Concept</div>
+          <div class="vis-frame">
+            <svg viewBox="0 0 280 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="480" fill="#0F1A2C"/>
+              <rect x="15" y="15" width="250" height="250" rx="8" fill="#1A2D46"/>
+              <circle cx="140" cy="120" r="40" fill="#00E5FF" opacity="0.08"/>
+              <circle cx="140" cy="130" r="8" fill="#00E5FF" opacity="0.3"/>
+              <circle cx="140" cy="115" r="5" fill="#00E5FF" opacity="0.2"/>
+              <circle cx="155" cy="125" r="3" fill="#00E5FF" opacity="0.15"/>
+              <circle cx="130" cy="145" r="4" fill="#00E5FF" opacity="0.15"/>
+              <text x="140" y="230" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#E8F0FE" text-anchor="middle">Can an app fix your</text>
+              <text x="140" y="248" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#00E5FF" text-anchor="middle">squat form?</text>
+              <rect x="15" y="285" width="250" height="48" rx="8" fill="#00E5FF" opacity="0.08"/>
+              <text x="30" y="305" font-family="system-ui,sans-serif" font-size="8" fill="#E8F0FE">AI-powered form correction</text>
+              <text x="30" y="322" font-family="system-ui,sans-serif" font-size="7" fill="#4A6A8F">Real-time feedback. No gym required.</text>
+              <rect x="30" y="415" width="220" height="44" rx="22" fill="#00E5FF"/>
+              <text x="140" y="443" font-family="system-ui,sans-serif" font-size="11" font-weight="700" fill="#0F1A2C" text-anchor="middle">Download Pulse AI</text>
+            </svg>
+          </div>
+        </div>
+        <div class="vis-card">
+          <div class="vis-label">Growth Funnel</div>
+          <div class="vis-frame">
+            <svg viewBox="0 0 340 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="340" height="280" fill="#0F1A2C"/>
+              <rect x="20" y="20" width="300" height="36" rx="4" fill="#1A2D46"/>
+              <text x="170" y="43" font-family="system-ui,sans-serif" font-size="9" font-weight="700" fill="#E8F0FE" text-anchor="middle">Awareness · Problem-aware content</text>
+              <rect x="20" y="70" width="240" height="36" rx="4" fill="#1A2D46"/>
+              <text x="140" y="93" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="#E8F0FE" text-anchor="middle">Install · Meta + TikTok → App Store</text>
+              <rect x="275" y="76" width="50" height="24" rx="4" fill="#00E5FF" opacity="0.15"/>
+              <text x="300" y="92" font-family="system-ui,sans-serif" font-size="7" fill="#00E5FF" text-anchor="middle">$0.38</text>
+              <rect x="20" y="120" width="240" height="36" rx="4" fill="#1A2D46"/>
+              <text x="140" y="143" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="#E8F0FE" text-anchor="middle">Activation · First workout completed</text>
+              <rect x="20" y="170" width="180" height="36" rx="4" fill="#1A2D46"/>
+              <text x="110" y="193" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="#E8F0FE" text-anchor="middle">Retention · D7 / D30 cycles</text>
+              <rect x="225" y="176" width="50" height="24" rx="4" fill="#00E5FF" opacity="0.15"/>
+              <text x="250" y="192" font-family="system-ui,sans-serif" font-size="7" fill="#00E5FF" text-anchor="middle">2.2×</text>
+              <rect x="50" y="220" width="240" height="36" rx="4" fill="#1A2D46"/>
+              <text x="170" y="243" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="#E8F0FE" text-anchor="middle">Referral · 28% invite rate</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="fade-up">
+    <div class="section-number fade-up d1">04</div>
+    <h2 class="section-title fade-up d2">Let's diagnose what your brand needs.</h2>
+    <div class="contact-grid">
+      <div class="fade-up d3">
+        <h3>Start a conversation</h3>
+        <p class="contact-intro">I work with clients in Kathmandu, across South Asia, and remotely with international teams. If you have a brief, a half-baked idea, or a brand that feels stuck — send me a note. I'll tell you what I see before I tell you what I'd charge.</p>
+        <div class="contact-row">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--accent)" stroke-width="1.2" aria-hidden="true"><path d="M2 4l6 4 6-4M2 4v8a1 1 0 001 1h10a1 1 0 001-1V4M2 4a1 1 0 011-1h10a1 1 0 011 1"/></svg>
+          <a href="mailto:hello@eshitadahal.com.np">hello@eshitadahal.com.np</a>
+          <button class="copy-btn" data-copy="hello@eshitadahal.com.np" aria-label="Copy email">Copy</button>
+        </div>
+        <div class="contact-row">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--accent)" stroke-width="1.2" aria-hidden="true"><path d="M8 1a5 5 0 00-5 5c0 3.5 5 9 5 9s5-5.5 5-9a5 5 0 00-5-5z"/><circle cx="8" cy="6" r="2"/></svg>
+          <span>Kathmandu, Nepal · Working globally</span>
+        </div>
+        <div class="contact-row">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--accent)" stroke-width="1.2" aria-hidden="true"><path d="M12 2H4a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V3a1 1 0 00-1-1z"/><path d="M6 5h4M6 8h4M6 11h2"/></svg>
+          <a href="https://eshitadahal.com.np" target="_blank">eshitadahal.com.np</a>
+        </div>
+      </div>
+      <form class="form-stack fade-up d4" id="contactForm">
+        <label for="contact-name" class="sr-only">Name</label>
+        <input id="contact-name" name="name" type="text" placeholder="Name" required />
+        <label for="contact-email" class="sr-only">Email</label>
+        <input id="contact-email" name="email" type="email" placeholder="Email" required />
+        <label for="contact-type" class="sr-only">Project type</label>
+        <input id="contact-type" name="project" type="text" placeholder="Project type (brand / campaign / audit / other)" />
+        <label for="contact-msg" class="sr-only">Message</label>
+        <textarea id="contact-msg" name="message" placeholder="Tell me about your project, organisation, or the problem you're trying to solve…" required></textarea>
+        <button type="submit" class="btn btn-primary" id="contactSubmit">Send inquiry</button>
+        <p id="formStatus" class="form-status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <button class="btn-up" id="btnTop" aria-label="Back to top">↑</button>
+
+  <footer>
+    <span>&copy; <span id="year">2025</span> Eshita Dahal</span>
+    <div class="socials">
+      <a href="https://behance.net/eshitadahal" target="_blank" aria-label="Behance">Behance</a>
+      <a href="https://linkedin.com/in/eshitadahal" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+      <a href="https://contra.com/eshitadahal" target="_blank" aria-label="Contra">Contra</a>
+      <a href="https://github.com/EshuuBB" target="_blank" aria-label="GitHub">GitHub</a>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      var toggle = document.getElementById('navToggle');
+      var navLinks = document.getElementById('navLinks');
+      toggle.addEventListener('click', function() {
+        var open = navLinks.classList.toggle('open');
+        this.setAttribute('aria-expanded', open);
+        this.textContent = open ? '\u2715' : '\u2630';
+      });
+      document.querySelectorAll('.nav-links a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          navLinks.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.textContent = '\u2630';
+        });
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+        a.addEventListener('click', function(e) {
+          var target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            var offset = 80;
+            var top = target.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top: top, behavior: 'smooth' });
+          }
+        });
+      });
+
+      var navEl = document.querySelector('nav');
+      function onScroll() { navEl.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      var btnTop = document.getElementById('btnTop');
+      window.addEventListener('scroll', function() {
+        btnTop.classList.toggle('show', window.scrollY > 600);
+      }, { passive: true });
+      btnTop.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+      var sections = document.querySelectorAll('section[id]');
+      var navLinksA = document.querySelectorAll('.nav-links a');
+      var navObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            navLinksA.forEach(function(link) {
+              link.toggleAttribute('aria-current', link.getAttribute('href') === '#' + entry.target.id);
+            });
+          }
+        });
+      }, { threshold: 0.3 });
+      sections.forEach(function(s) { navObserver.observe(s); });
+
+      var revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.fade-up, .fade-scale, .fade-in').forEach(function(el) { revealObserver.observe(el); });
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      var form = document.getElementById('contactForm');
+      var submitBtn = document.getElementById('contactSubmit');
+      var statusEl = document.getElementById('formStatus');
+      form.action = 'https://formsubmit.co/hello@eshitadahal.com.np';
+      form.method = 'POST';
+      var anti = document.createElement('input');
+      anti.type = 'hidden'; anti.name = '_captcha'; anti.value = 'false';
+      form.appendChild(anti);
+      var next = document.createElement('input');
+      next.type = 'hidden'; next.name = '_next'; next.value = window.location.href;
+      form.appendChild(next);
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          statusEl.textContent = 'Please fill in all required fields.';
+          statusEl.style.color = 'var(--accent)'; return;
+        }
+        submitBtn.disabled = true; submitBtn.textContent = 'Sending\u2026';
+        statusEl.textContent = '';
+        var fd = new FormData(form);
+        fetch(form.action, { method: 'POST', body: fd })
+          .then(function(r) {
+            if (r.ok) {
+              statusEl.textContent = 'Thanks \u2014 I\'ll respond within 48 hours.';
+              statusEl.style.color = 'var(--muted)'; form.reset();
+            } else { throw new Error('fail'); }
+          })
+          .catch(function() {
+            statusEl.textContent = 'Could not send. Try hello@eshitadahal.com.np directly';
+            statusEl.style.color = 'var(--accent)';
+          })
+          .finally(function() { submitBtn.disabled = false; submitBtn.textContent = 'Send inquiry'; });
+      });
+
+      var copyBtns = document.querySelectorAll('.copy-btn');
+      copyBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var text = this.getAttribute('data-copy');
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function() {
+              btn.textContent = 'Copied!';
+              setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+            });
+          }
+        });
+      });
+
+      var orb = document.getElementById('heroOrb');
+      if (orb) {
+        document.getElementById('hero').addEventListener('mousemove', function(e) {
+          var rect = this.getBoundingClientRect();
+          var x = (e.clientX - rect.left) / rect.width;
+          var y = (e.clientY - rect.top) / rect.height;
+          orb.style.left = (x * 100) + '%';
+          orb.style.top = (y * 100) + '%';
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
